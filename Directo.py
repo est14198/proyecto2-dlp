@@ -29,7 +29,7 @@ def add_hashtag(node):
 
 
 # Calcular first pos y last pos de cada nodo
-def add_first_last_pos(node, symbols=[]):
+def add_first_last_pos(node, symbols):
     if(node['left_node'] and 'first_pos' not in node['left_node']):
         add_first_last_pos(node['left_node'], symbols)
 

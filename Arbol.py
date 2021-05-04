@@ -33,23 +33,12 @@ def read_r(node, alphabet):
 
     content = node['content']
 
-    if len(content) == 1:
+    if type(content) is int or len(content) == 0:
         return
 
-    # Quitar parentesis innecesarios
-    parenthesis = 0
-    if(content[-1] == ')'):
-        for i in reversed(range(len(content))):
-            if(content[i] == ')'):
-                parenthesis += 1
-            elif(content[i] == '('):
-                parenthesis -= 1
-                if(parenthesis == 0):
-                    if(i == 0):
-                        content = content[1:-1]
-                        break
-                    else:
-                        break
+    if len(content) == 1:
+        node['content'] = content[0]
+        return
 
     k = -1
     # Identificar OR antes que el resto
@@ -83,12 +72,17 @@ def read_r(node, alphabet):
             elif(content[a] == '('):
                 parenthesis -= 1
                 if(parenthesis == 0):
-                    node['content'] = and_symbol
-                    node['left_node'] = create_node(content[:a])
-                    node['right_node'] = create_node(content[a:])
-                    read_r(node['left_node'], alphabet)
-                    read_r(node['right_node'], alphabet)
-                    break
+                    if(a == 0):
+                        node['content'] = content[1:-1]
+                        read_r(node, alphabet)
+                        break
+                    else:
+                        node['content'] = and_symbol
+                        node['left_node'] = create_node(content[:a])
+                        node['right_node'] = create_node(content[a:])
+                        read_r(node['left_node'], alphabet)
+                        read_r(node['right_node'], alphabet)
+                        break
 
     # Si es + , * o ?
     elif(content[-1] == kleen_symbol or content[-1] == positive_closure_symbol or content[-1] == zero_or_one_symbol):
@@ -135,7 +129,7 @@ count = 0
 def grph(node, d):
     global count
     count2 = count
-    d.node(str(count2), label = node['content'], shape='circle')
+    d.node(str(count2), label = str(node['content']), shape='circle')
     count += 1
     if (node['left_node']):
         d.edge(str(count2), str(count))
@@ -149,7 +143,7 @@ def grph(node, d):
 def grph_2(node, d):
     global count
     count2 = count
-    d.node(str(count2), label = node['content'] + '\n' + str(node['first_pos']) + str(node['last_pos']), shape='circle')
+    d.node(str(count2), label = str(node['content']) + '\n' + str(node['first_pos']) + str(node['last_pos']), shape='circle')
     count += 1
     if (node['left_node']):
         d.edge(str(count2), str(count))
