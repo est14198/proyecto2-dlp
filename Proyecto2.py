@@ -10,10 +10,6 @@
 from graphviz import Digraph
 # Importar funciones para generar Arbol
 from Arbol import *
-# Importar funciones para generar AFN (Thompson)
-from Thompson import *
-# Importar funciones para generar AFD (Subconjuntos)
-from Subconjuntos import *
 #
 from Directo import *
 
