@@ -1,0 +1,8 @@
+variable
+variable123
+12
+15.4
+do
+switch
+a
+1 + 1

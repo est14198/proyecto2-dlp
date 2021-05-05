@@ -1,0 +1,11 @@
+do
+while
+variable
+variable123
+1AH
+2FFH
+1F3FH
+12345
+-58
++79
+hola + 1H

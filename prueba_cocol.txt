@@ -1,0 +1,9 @@
+variable
+variable12345
+"esto es un string prueba"
+"123"
+CHR(50)
+CHR(35)..CHR(70)
+hola
+.)
+(.
